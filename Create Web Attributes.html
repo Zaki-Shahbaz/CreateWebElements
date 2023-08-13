@@ -1,0 +1,67 @@
+<html>
+<body>
+<h2>Create Web Elements - </h2>
+<a  name = "xyz" id = "xyz" ></a>
+<label for="WebElements">Choose a Web Element:</label>
+  <select id="elements" name="elements">
+    <option value="a">a Tag</option>
+    <option value="p">Paragraph</option>
+    <option value="img">Image</option>
+    <option value="h2">Header</option>
+  </select><br><br>
+    <h4>Tags - </h4>
+    <label for="displayText">Display Text:</label><br>
+    <input type="text" id="displayText" name="displayText"><br><br>
+    <label for="Name_Tag">Name:</label><br>
+    <input type="text" id="Name_Tag" name="Name_Tag"><br><br>
+    <label for="id_Tag">id:</label><br>
+   <input type="text" id="id_Tag" name="id_Tag" disabled><br><br>
+    
+    <label for="value_Tag" >Value:</label><br>
+    <input type="text" id="value_Tag" name="value_Tag"><br><br>
+    <label for="href_Tag">Link:</label><br>
+    <input type="text" id="href_Tag" name="href_Tag"><br><br>
+    <label for="src_Tag">Source:</label><br>
+    <input type="text" id="src_Tag" name="src_Tag"><br><br>
+ 
+<button onclick="createLine(document.getElementById('displayText').value, document.getElementById('elements').value,document.getElementById('Name_Tag').value, document.getElementById('id_Tag').value, document.getElementById('value_Tag').value, document.getElementById('href_Tag').value, document.getElementById('src_Tag').value)">Generate</button><br><br>
+<label for="textArea_Tag">Output:</label><br>
+<textarea id="textArea_Tag" name="textArea_Tag" rows="4" cols="50"></textarea>
+<p id="display"></p>
+<script>
+function createLine(displayText,elements,Name_Tag,id_Tag,value_Tag,href_Tag,src_Tag){
+let x = Math.floor((Math.random() * 999999) + 999);
+document.getElementById('id_Tag').value = x;
+var attributes = "";
+var display = displayText;
+var ele = elements;
+var name = Name_Tag;
+var id = id_Tag;
+var val = value_Tag;
+var href = href_Tag;
+var src = src_Tag;
+var fullLine = "";
+
+if (name!= ""){
+attributes=attributes+' name = "' + name +'"';
+}
+if (id!= ""){
+attributes=attributes+' id = "id_' + x +'"';
+}
+if (val!= ""){
+attributes=attributes+' value = "' + val +'"';
+}
+if (href!= ""){
+attributes=attributes+' href = "' + href +'"';
+}
+if (src!= ""){
+attributes=attributes+' src = "' + src +'"';
+}
+fullLine = fullLine + "<" + ele + attributes + ">" + display + "</" + ele +">";
+document.getElementById("textArea_Tag").value = fullLine;
+document.getElementById("display").innerHTML = fullLine;
+
+}
+</script>
+</body>
+</html>
