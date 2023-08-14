@@ -1,0 +1,82 @@
+<html>
+<head>
+<style>
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+</style>
+</head>
+<body>
+  <h1>Create Table - </h1>
+
+  <p>Enter Headers seperated by comma: </p>
+  <input type="text" name="headers" id="headers"><br>
+  <p>Enter data seperated by comma: </p>
+  <input type="text" name="data" id="data"><br>
+  <button onclick="createTable(document.getElementById('headers').value,document.getElementById('data').value)"> Generate </button><br>
+  <p><textarea name="testDisplay" id="testDisplay" rows="6" cols="40"></textarea></p><br>
+  <p><textarea name="print" id="print" rows="6" cols="40"></textarea></p><br>
+  <p><textarea name="mergeTable" id="mergeTable" rows="6" cols="80"></textarea></p>
+  <p id="display"></p>
+<script>
+function createTable(headers,data) 
+{
+let txtHdr = headers;
+var i;
+var headerName = "";
+var headerTag = "";
+var txt =  " ";
+var tagRow = " ";
+txtHdr = txtHdr.replaceAll(" ",",");
+var arrayHdr = txtHdr.split(",");
+var ln = arrayHdr.length;
+let column = ln;
+for(i = 0;i<ln;i++)
+{
+headerName = arrayHdr[i];
+headerTag = headerTag + "<th>" + headerName + "</th>";
+document.getElementById("testDisplay").value = headerTag;
+}
+let txtData = data;
+var j;
+var rowData = "";
+var dataTag = "";
+txtData=txtData.replaceAll(" ",",");
+var arrayData = txtData.split(",");
+let ln2 = arrayData.length;
+var lastIndex;
+dataTag = dataTag + "<tr>";
+for(j = 0;j<ln2;j++)
+{
+if (j == (ln2-1))
+{
+rowData = arrayData[j];
+dataTag = dataTag + "<td>" + rowData + "</td></tr>";
+document.getElementById("print").value = dataTag;
+break;
+}
+rowData = arrayData[j];
+dataTag = dataTag + "<td>" + rowData + "</td>";
+document.getElementById("print").value = dataTag;
+var lnAr = ln-1;
+var num = j%ln;
+txt = txt + " " + j;
+if (num == lnAr)
+{
+dataTag = dataTag + "</tr><tr>";
+}
+
+}
+document.getElementById("mergeTable").value = "<table><tr>" + headerTag +"</tr>" + dataTag + "<table>";
+document.getElementById("display").innerHTML = "<table><tr>" + headerTag +"</tr>" + dataTag + "<table>";
+
+}
+
+</script>
+</body>
+</html>
